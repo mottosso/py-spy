@@ -328,7 +328,7 @@ impl PythonProcessInfo {
             let python_bin_pattern = "bin/python";
 
             #[cfg(windows)]
-            let python_bin_pattern = "python.exe";
+            let python_bin_pattern = ".exe";
 
             let map = maps.iter()
                 .find(|m| if let Some(pathname) = &m.filename() {
