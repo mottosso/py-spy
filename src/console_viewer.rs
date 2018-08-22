@@ -185,7 +185,6 @@ impl ConsoleViewer {
             println!("{:>6.2}% {:>6.2}% {:>7}s {:>8}s   {:.width$}",
                 100.0 * samples.current_own as f64 / (self.stats.current_samples as f64),
                 100.0 * samples.current_total as f64 / (self.stats.current_samples as f64),
-                // TODO: sampling rate?
                 display_time(samples.overall_own as f64 * self.sampling_rate),
                 display_time(samples.overall_total as f64 * self.sampling_rate),
                 label, width=max_function_width - 2);
@@ -318,12 +317,12 @@ impl Stats {
 
     pub fn reset_current(&mut self) {
         // reset current statistics
-        for  (_, val) in self.line_counts.iter_mut() {
+        for val in self.line_counts.values_mut() {
             val.current_total = 0;
             val.current_own = 0;
         }
 
-        for  (_, val) in self.function_counts.iter_mut() {
+        for val in self.function_counts.values_mut() {
             val.current_total = 0;
             val.current_own = 0;
         }
